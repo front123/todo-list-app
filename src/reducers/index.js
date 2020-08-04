@@ -14,6 +14,10 @@ export default (state = {itemsList:[]}, action) => {
         return {
           itemsList: state.itemsList.slice()
         };
+      case 'LOAD_REMOTE_ITEM':
+        return {
+          itemsList: action.remoteItemsList
+        }
       default:
         return state
     }
