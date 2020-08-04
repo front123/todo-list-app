@@ -8,6 +8,8 @@ class TodoContainer extends React.Component{
     render(){
         return(
             <div>
+                <h1 style={{display:"inline"}}>My Todo List</h1> 
+                <a href="#/done" style={{color:"white"}}>Finished</a> 
                 <InputItem />
                 <TodoList />
             </div>
