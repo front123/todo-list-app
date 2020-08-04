@@ -11,6 +11,9 @@ class InputItem extends React.Component{
     }
 
     handleAddItem = ()=>{
+        if(this.state.text.trim().length===0){
+            return ;
+        }
         let item = {
             text: this.state.text,
             isDone: false
