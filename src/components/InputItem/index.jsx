@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 class InputItem extends React.Component{
     constructor(props){
@@ -11,7 +12,8 @@ class InputItem extends React.Component{
 
     handleAddItem = ()=>{
         let item = {
-            text: this.state.text
+            text: this.state.text,
+            isDone: false
         }
         this.props.addItem(item);
     }
@@ -29,9 +31,11 @@ class InputItem extends React.Component{
                 <button onClick={this.handleAddItem}>+</button>
             </div>
         )
-
-        
     }
+}
+
+InputItem.propTypes = {
+    addItem: PropTypes.func
 }
 
 
