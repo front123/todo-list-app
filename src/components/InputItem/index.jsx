@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import axios from 'axios'
 
 class InputItem extends React.Component{
     constructor(props){
@@ -12,6 +13,9 @@ class InputItem extends React.Component{
 
     handleAddItem = ()=>{
         if(this.state.text.trim().length===0){
+            this.setState({
+                text: ''
+            })
             return ;
         }
         let item = {
@@ -19,6 +23,13 @@ class InputItem extends React.Component{
             isDone: false
         }
         this.props.addItem(item);
+        axios.post('https://5f29621aa1b6bf0016ead582.mockapi.io/todos', {text:this.state.text, isDone:false})
+        .then(function (response) {
+            console.log(response)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
     }
 
     handleInput = (event)=>{
@@ -30,7 +41,7 @@ class InputItem extends React.Component{
     render(){
         return(
             <div>
-                <input type="text" onChange={this.handleInput}/>
+                <input type="text" onChange={this.handleInput} value={this.state.text}/>
                 <button onClick={this.handleAddItem}>+</button>
             </div>
         )
