@@ -1,7 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import axios from 'axios'
+import todoApi from '../../todo-api'
+import {Input} from 'antd'
+import {PlusSquareTwoTone} from '@ant-design/icons'
 
 class InputItem extends React.Component{
     constructor(props){
@@ -18,14 +20,10 @@ class InputItem extends React.Component{
             })
             return ;
         }
-        let item = {
-            text: this.state.text,
-            isDone: false
-        }
-        this.props.addItem(item);
-        axios.post('https://5f29621aa1b6bf0016ead582.mockapi.io/todos', {text:this.state.text, isDone:false})
-        .then(function (response) {
-            console.log(response)
+        
+        todoApi.post('',{text:this.state.text, isDone:false})
+        .then((response)=> {
+            this.props.addItem(response.data);
         })
         .catch((err)=>{
             console.log(err)
@@ -41,8 +39,13 @@ class InputItem extends React.Component{
     render(){
         return(
             <div>
-                <input type="text" onChange={this.handleInput} value={this.state.text}/>
-                <button onClick={this.handleAddItem}>+</button>
+                 <Input size="large" 
+                 onChange={this.handleInput} 
+                 addonAfter={<PlusSquareTwoTone onClick={this.handleAddItem}/>}  
+                 placeholder={"Please input your todo list"}/>
+                {/* <input type="text" onChange={this.handleInpuont} value={this.state.text}/> */}
+                {/* <button onClick={this.handleAddItem}>+</button> */}
+               
             </div>
         )
     }
