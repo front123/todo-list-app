@@ -1,16 +1,16 @@
 import React from 'react';
-import {HashRouter, Route, Switch} from 'react-router-dom';
-import DoneItem from '../DoneItem'
+import { HashRouter, Route, Switch } from 'react-router-dom';
+import FinishItemPage from '../FinishItemPage'
 import TodoContainer from '../TodoContainer'
 
-class BasicRoute extends React.Component{
+class BasicRoute extends React.Component {
 
-    render(){
-        return(
+    render() {
+        return (
             <HashRouter>
                 <Switch>
-                    <Route exact path="/" component={TodoContainer}/>
-                    <Route exact path="/done" component={DoneItem}/>
+                    <Route exact path="/" component={TodoContainer} />
+                    <Route exact path="/done" component={FinishItemPage} />
                 </Switch>
             </HashRouter>
         )
