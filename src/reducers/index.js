@@ -7,14 +7,18 @@ export default (state = {itemsList:[]}, action) => {
         };
       case 'REMOVE_ITEM':
         return {
-          itemsList: state.itemsList.filter((item, index) => action.index !== index)
+          itemsList: state.itemsList.filter((item, index) => action.index !== item.id)
         };
-      case 'SET_DONE':
-        state.itemsList[action.index].isDone = !state.itemsList[action.index].isDone
+      case 'REVERSE_MARK':
         return {
-          itemsList: state.itemsList.slice()
-        };
-      case 'LOAD_REMOTE_ITEM':
+          itemsList: state.itemsList.map((item)=>{
+            if (item.id === action.index){
+              item.isDone = !item.isDone;
+            }
+            return item;
+          })
+        }
+      case 'STORE_REMOTE_ITEMS':
         return {
           itemsList: action.remoteItemsList
         }
@@ -23,4 +27,4 @@ export default (state = {itemsList:[]}, action) => {
     }
   }
 
-  // item:{text:'', isDone:boolean}
+  // item:{id:number, text:'', isDone:boolean}
