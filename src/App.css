@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.finish-text{
+  color: white;
+}
+
+.finish-text:hover{
+  color: rgb(136, 210, 240);
+}
+
+.my-todo-list{
+  color: white;
+}
+
+.my-todo-list:hover{
+  color: rgb(136, 210, 240);
+}
